@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class User < ActiveRecord::Base
   has_many :statuses
   has_many :games, through: :statuses
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false }

@@ -1,5 +1,5 @@
-class Game < ApplicationRecord
-  has_many :statuses
+class Game < ActiveRecord::Base
+  has_many :statuses, dependent: :destroy
   has_many :users, through: :statuses
   validates :title, presence: true
 

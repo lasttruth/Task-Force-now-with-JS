@@ -11,9 +11,9 @@
 
     <% if current_user %>
 
-        <%= link_to game.title, user_game_path(game.title, game) %>
+        <%= link_to game.title, user_game_path(current_user, game) %>
 
-        <%= link_to "Edit", edit_user_game_path(game.title, game) %>
+        <%= link_to "Edit", edit_user_game_path(game.id, game) %>
 
 
       <% end %>

@@ -16,13 +16,15 @@ class GamesController < ApplicationController
   end
 
   def new
-    @game = Game.new(user_id: params[:user_id])
+    @game = Game.new
   end
 
   def create
     #render plain: params[:game].inspect
-    @game = Game.new(game_params)
-    if (@game.save)
+    @user = User.find(params[:user_id])
+    @game = @user.games.build(game_params)
+
+    if @game.save
       redirect_to user_games_path
     else
       render 'new'
