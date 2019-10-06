@@ -1,13 +1,19 @@
 class UsersController < ApplicationController
 before_action :logged_in_user, only: [:index, :edit, :update]
-before_action :correct_user,   only: [:edit, :update]
+before_action :correct_user,   only: [:show, :edit, :update]
 
   def index
-    @users = User.all
+      @users = User.all
+
   end
 
   def show
-    @user = User.find(params[:id])
+    if current_user
+      redirect_to user_games_path(@user)
+    else
+      flash[:notice] = "You don't have access to that!"
+      redirect_to users_path
+    end
   end
 
   def new
